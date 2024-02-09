@@ -1,19 +1,31 @@
-import re
+from bs4 import BeautifulSoup
 import sys
 
-REG_STRING = r"\<span[^\>]+\><span[^/>]+\>(.[^</span>]*)\<\/span>\<\/span>"
+# Open the file provided and cast it to beautiful soup using the html parser
+with open(sys.argv[1], 'r+') as content:
+    soup = BeautifulSoup(content, features="html.parser")
 
-def strip_html(path_to_document):
-    """
-    Opens file provided to the function. Then using re.sub finds all occurences of the pattern and replaces it with only the group one text.
-    Finally it finds it way back to the beginning of the file and writes all the new text without the reg pattern and finally trucates just 
-    to remove any trailing or leading whitespace.
-    """
-    with open(path_to_document, "r+") as file:
-        text = file.read()
-        text = re.sub(REG_STRING, r'\1', text)
-        file.seek(0,0)
-        file.write(text)
-        file.truncate()
 
-strip_html(sys.argv[1])
+def get_html():
+    """
+    This function finds all the anchors then reduces it down to only anchors with internal spans. Then
+    we loop through the reduced anchors to strip all the style and text from the spans and add them to
+    the anchor. Last we use bs4's decompose to remove the nested spans. Nothing is returned because all
+    of this is being done on the global soup variable.
+    """
+    anchors = soup.find_all('a')
+    span_anchors = [anchor for anchor in anchors if anchor.find_all('span')]
+    for anchor in span_anchors:
+        anchors_spans = anchor.find_all('span')
+        style = ''.join([span['style'] for span in anchors_spans])
+        text = anchors_spans[0].get_text()
+        anchor.string = text
+        anchor['style'] = anchor['style'] + style
+        for span in anchors_spans:
+            span.decompose()
+
+get_html()
+
+# Write the file back in place using bs4's prettify to add back in spacing for readability.
+with open(sys.argv[1], 'w') as file:
+    file.write(str(soup.prettify()))

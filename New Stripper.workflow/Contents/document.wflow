@@ -59,8 +59,9 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>pwd
-cd Desktop/html-stripper
+					<string>cd Desktop/html-stripper/
+source venv/bin/activate
+pip3 install -r requirements.txt
 python3 main.py "$1"</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
@@ -86,7 +87,7 @@ python3 main.py "$1"</string>
 				<key>Class Name</key>
 				<string>RunShellScriptAction</string>
 				<key>InputUUID</key>
-				<string>624CA330-357F-4956-965B-9FF11CCB9092</string>
+				<string>73761DD5-483A-49F9-BB27-AF310F4F81E8</string>
 				<key>Keywords</key>
 				<array>
 					<string>Shell</string>
@@ -96,9 +97,9 @@ python3 main.py "$1"</string>
 					<string>Unix</string>
 				</array>
 				<key>OutputUUID</key>
-				<string>438CC6DA-52DD-4B18-81D0-30D2CDB00349</string>
+				<string>0A4B360A-3744-4F5E-BA40-8EEB0BD6602C</string>
 				<key>UUID</key>
-				<string>F3D78ABB-FF5B-4392-84B6-8D33A3C30741</string>
+				<string>19EE44C7-FF9B-4B90-B0F6-3CD4DD80181D</string>
 				<key>UnlocalizedApplications</key>
 				<array>
 					<string>Automator</string>
@@ -171,12 +172,10 @@ python3 main.py "$1"</string>
 						<string>4</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>309.000000:485.000000</string>
+				<string>309.000000:305.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -188,19 +187,10 @@ python3 main.py "$1"</string>
 	<dict/>
 	<key>workflowMetaData</key>
 	<dict>
-		<key>applicationBundleID</key>
-		<string>com.apple.finder</string>
 		<key>applicationBundleIDsByPath</key>
-		<dict>
-			<key>/System/Library/CoreServices/Finder.app</key>
-			<string>com.apple.finder</string>
-		</dict>
-		<key>applicationPath</key>
-		<string>/System/Library/CoreServices/Finder.app</string>
+		<dict/>
 		<key>applicationPaths</key>
-		<array>
-			<string>/System/Library/CoreServices/Finder.app</string>
-		</array>
+		<array/>
 		<key>inputTypeIdentifier</key>
 		<string>com.apple.Automator.fileSystemObject</string>
 		<key>outputTypeIdentifier</key>
@@ -209,10 +199,6 @@ python3 main.py "$1"</string>
 		<integer>15</integer>
 		<key>processesInput</key>
 		<false/>
-		<key>serviceApplicationBundleID</key>
-		<string>com.apple.finder</string>
-		<key>serviceApplicationPath</key>
-		<string>/System/Library/CoreServices/Finder.app</string>
 		<key>serviceInputTypeIdentifier</key>
 		<string>com.apple.Automator.fileSystemObject</string>
 		<key>serviceOutputTypeIdentifier</key>
