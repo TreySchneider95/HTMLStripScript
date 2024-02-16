@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import sys
 
-BLACK_LIST = ('mso-border-alt:', 'word-break:')
+BLACK_LIST = ('mso-border-alt:', 'word-break:keep-all')
 
 # Open the file provided and cast it to beautiful soup using the html parser
 with open(sys.argv[1], 'r+') as content:
