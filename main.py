@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import sys
 
+BLACK_LIST = ('mso-border-alt:', 'word-break:')
+
 # Open the file provided and cast it to beautiful soup using the html parser
 with open(sys.argv[1], 'r+') as content:
     soup = BeautifulSoup(content, features="html.parser")
@@ -21,6 +23,9 @@ def get_html():
         text = anchors_spans[0].get_text()
         anchor.string = text
         anchor['style'] = anchor['style'] + style
+        styles = [x for x in anchor['style'].split(';') if not x.startswith(BLACK_LIST)]
+        styles = ';'.join(styles)
+        anchor['style'] = styles
         for span in anchors_spans:
             span.decompose()
 
@@ -28,4 +33,4 @@ get_html()
 
 # Write the file back in place using bs4's prettify to add back in spacing for readability.
 with open(sys.argv[1], 'w') as file:
-    file.write(str(soup.prettify()))
+    file.write(str(soup.prettify(formatter='html')))
